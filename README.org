@@ -1,0 +1,33 @@
+#+TITLE: Git: change email in all commits
+#+OPTIONS: ^:nil
+#+PROPERTY: header-args:sh :session *shell git-change-email-in-all-commits sh* :results silent raw
+#+PROPERTY: header-args:python :session *shell git-change-email-in-all-commits python* :results silent raw
+
+** System environment
+
+- Debian 9.11
+
+- git 2.20.1
+
+** Change email in every commit
+
+#+BEGIN_SRC sh :tangle src/change-email.sh
+#!/bin/sh
+
+git filter-branch -f --env-filter '
+OLD_EMAIL="local@local"
+CORRECT_NAME="Cryptokasten"
+CORRECT_EMAIL="crypto@mail.com"
+if [ "$GIT_COMMITTER_EMAIL" = "$OLD_EMAIL" ]
+then
+    export GIT_COMMITTER_NAME="$CORRECT_NAME"
+    export GIT_COMMITTER_EMAIL="$CORRECT_EMAIL"
+fi
+if [ "$GIT_AUTHOR_EMAIL" = "$OLD_EMAIL" ]
+then
+    export GIT_AUTHOR_NAME="$CORRECT_NAME"
+    export GIT_AUTHOR_EMAIL="$CORRECT_EMAIL"
+fi
+' --tag-name-filter cat -- --branches --tags
+#+END_SRC
+
