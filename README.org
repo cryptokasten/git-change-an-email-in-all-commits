@@ -1,7 +1,7 @@
-#+TITLE: Git: change email in all commits
+#+TITLE: Git: change an email in all commits
 #+OPTIONS: ^:nil
-#+PROPERTY: header-args:sh :session *shell git-change-email-in-all-commits sh* :results silent raw
-#+PROPERTY: header-args:python :session *shell git-change-email-in-all-commits python* :results silent raw
+#+PROPERTY: header-args:sh :session *shell git-change-an-email-in-all-commits sh* :results silent raw
+#+PROPERTY: header-args:python :session *shell git-change-an-email-in-all-commits python* :results silent raw
 
 ** System environment
 
@@ -9,7 +9,7 @@
 
 - git 2.20.1
 
-** Change email in every commit
+** Change an email in every commit
 
 #+BEGIN_SRC sh :tangle src/change-email.sh
 #!/bin/sh
